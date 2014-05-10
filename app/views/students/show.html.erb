@@ -1,0 +1,13 @@
+<h1>Show Student</h1>
+
+<%= @student %>
+
+
+<%= link_to 'Create Report', new_student_report_url(@student) %>
+<%= link_to "All Students", students_url %>
+
+<ul>
+  <% @reports.each do |report| %>
+    <li><%= link_to report, student_report_url(@student, report) %>
+  <% end %>
+</ul>
