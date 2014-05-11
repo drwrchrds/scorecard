@@ -17,6 +17,7 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  ta_id              :integer
+#  blog_link          :string(255)
 #
 
 class Report < ActiveRecord::Base
@@ -36,5 +37,9 @@ class Report < ActiveRecord::Base
   
   def to_s
     day
+  end
+  
+  def submitted?
+    false
   end
 end

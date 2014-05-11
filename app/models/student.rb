@@ -19,6 +19,6 @@ class Student < ActiveRecord::Base
   belongs_to :cohort
   
   def to_s
-    "#{first_name} #{last_name}..."
+    "#{first_name} #{last_name}"
   end
 end

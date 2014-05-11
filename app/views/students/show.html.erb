@@ -1,13 +1,24 @@
-<h1>Show Student</h1>
-
-<%= @student %>
+<h1><small>Daily Progress Reports:</small><br> <%= @student %></h1>
 
 
-<%= link_to 'Create Report', new_student_report_url(@student) %>
-<%= link_to "All Students", students_url %>
+<%= link_to "Back to all students", students_url %>
 
-<ul>
+<ul id="reports">
   <% @reports.each do |report| %>
-    <li><%= link_to report, student_report_url(@student, report) %>
+    <% if report.day[3] == "1" %>
+      <li class="week">
+        <h3>Week <%= report.day[1] %></h3>
+    <% end %>
+      <div class="report">
+        <a href="<%= student_report_url(@student, report) %>">
+          <div 
+            class="bubble <%= report.submitted? ? 'submitted' : 'not-submitted' %>">
+            <span class="day-name"><%= report.day %></span>
+          </div>
+        </a>
+      </div>
+    <% if report.day[3] == "5" %>
+      </li>
+    <% end %>
   <% end %>
 </ul>
