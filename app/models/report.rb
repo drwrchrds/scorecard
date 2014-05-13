@@ -40,6 +40,8 @@ class Report < ActiveRecord::Base
   end
   
   def submitted?
-    false
+    !finished_exercises.nil? && !read_solutions.nil? && 
+      !read.readings.nil? && material_rating &&
+      pair_rating && (good_concept || bad_concept)
   end
 end

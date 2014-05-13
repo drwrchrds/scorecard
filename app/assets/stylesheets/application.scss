@@ -16,6 +16,13 @@
 
 @import "bootstrap";
 
+$yes-cat: "http://img.pandawhale.com/post-23296-Grumpy-Cat-YES-9Upv.jpeg";
+$no-cat: "http://yourdailyweb.com/wp-content/uploads/2013/09/grumpy-cat-says-no.jpg";
+$gold-star: "http://www.fancyicons.com/download/?id=3343&t=png&s=256";
+$empty-star: "http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/512/Buzz-Outline-star-icon.png";
+$faces: 'smilies.png';
+// http://4vector.com/i/free-vector-smilies-emotion-icons-clip-art_117114_Smilies_Emotion_Icons_clip_art_hight.png
+
 html, body {
   width: 100%;
   margin: 0;
@@ -80,4 +87,130 @@ div.report {
   a {
     text-decoration: none;
   }
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+
+input[type="checkbox"] + label {
+  display: inline-block;  
+  cursor: pointer;  
+  position: relative;  
+  padding: 20px 0 20px 90px;
+  margin-right: 15px;  
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+input[type='checkbox'] + label:before {
+  background: url($no-cat) left center no-repeat;
+  background-size: 80px 80px; 
+  content: "";  
+  display: inline-block;  
+  
+  width: 80px;  
+  height: 80px;  
+  border-radius: 30px;
+
+  margin-right: 10px;  
+  position: absolute;  
+  left: 0px;  
+  top: 50%;
+  margin-top: -40px;  
+}
+
+input[type='checkbox']:checked + label:before {
+ background-image: url($yes-cat);
+}
+
+.radios {
+  input[type='radio'] {
+    display: none;
+  }
+  input[type='radio'] + label {
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    width: 90px;
+    height: 90px;
+    margin-right: 15px;  
+    font-size: 25px;  
+  }
+  
+  input[type='radio'] + label:before { 
+    background: image-url($faces) left center no-repeat;
+    background-size: 750px 253px;
+    content: "";  
+    display: inline-block;  
+
+    width: 80px;  
+    height: 80px;  
+    border-radius: 40px;
+
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;
+    top: 50%;  
+    margin-top: -40px;
+  }
+}
+.radios.faces {
+  input[type='radio'] + label:before {
+    -webkit-filter: grayscale(100%);
+  }
+  input[type='radio']:checked + label:before {
+   -webkit-filter: grayscale(0%); 
+  }
+  
+  input[type='radio']#frustrated + label:before {
+    background-position: -252px;
+  }
+  input[type='radio']#challenge + label:before {
+   background-position: -4px; 
+
+  }
+  input[type='radio']#ok + label:before {
+   background-position: -170px -170px;
+  }
+  input[type='radio']#good + label:before {
+    background-position: -85px -5px;
+  }
+  input[type='radio']#super + label:before {
+    background-position: -583px -5px;
+  }
+}
+
+.radios.stars {
+  input[type='radio'] + label:before {
+    background: url($empty-star) left center no-repeat;
+    background-size: 80px 80px;
+    border-radius: 0;
+  }
+  
+  input[type='radio'] + label.starred:before {
+    background-image: url($gold-star);
+  }
+}
+
+textarea {
+  height: 100px;
+  max-width: 100%;
+}
+
+button {
+  float: right;
+}
+
+#pair-comments,
+#best-concept,
+#worst-concept {
+  display: none;
+}
+
+form {
+  
 }

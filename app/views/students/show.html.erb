@@ -10,9 +10,12 @@
         <h3>Week <%= report.day[1] %></h3>
     <% end %>
       <div class="report">
-        <a href="<%= student_report_url(@student, report) %>">
+        <a href="<%= report.submitted? ?
+             student_report_url(@student, report) :       
+             edit_student_report_url(@student, report) %>">
           <div 
-            class="bubble <%= report.submitted? ? 'submitted' : 'not-submitted' %>">
+            class="bubble <%= report.submitted? ?
+                  'submitted' : 'not-submitted' %>">
             <span class="day-name"><%= report.day %></span>
           </div>
         </a>

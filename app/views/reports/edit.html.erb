@@ -1,0 +1,205 @@
+<h1>Edit Report</h1>
+<h1><%= @report.day %></h1>
+
+<h1><%= @student %></h1>
+
+<form 
+  class="form clearfix" 
+  action="<%= student_report_url(@student, @report) %>" 
+  method="post">
+  <input 
+    type="hidden" 
+    name="authenticity_token" 
+    value="<%= form_authenticity_token %>">
+  
+  <div class="form-group">
+    <input type="checkbox" id="field1" name='report[finished_exercises]'>
+    <label for="field1">
+      <h3>Finished today's exercises?</h3>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" id="field2" name='report[read_solutions]'>
+    <label for="field2">
+      <h3>Read the solutions?</h3>
+    </label>
+  </div>
+
+  <div class="form-group">
+    <input type="checkbox" id="field3" name='report[read_readings]'>
+    <label for="field3">
+      <h3>Read tomorrow's readings?</h3>
+    </label>
+  </div>
+
+  <div class="form-group radios faces">
+    <h3>Rating for your understanding of today's material:</h3>
+    <input 
+      id="frustrated" 
+      type="radio" 
+      name='report[material_rating]' 
+      value='1'>
+    <label 
+      for="frustrated" 
+      id="frustrated-label" 
+      data-rating="1">
+    </label>
+    
+    <input 
+      id="challenge" 
+      type="radio" 
+      name='report[material_rating]' 
+      value='2'>
+    <label 
+      for="challenge" 
+      id="challenge-label" 
+      data-rating="2">
+    </label>
+    
+    <input 
+      id="ok" 
+      type="radio" 
+      name='report[material_rating]' 
+      value='3'>
+    <label 
+      for="ok" 
+      id='ok-label' 
+      data-rating="3">
+    </label>
+    
+    <input 
+      id="good" 
+      type="radio" 
+      name='report[material_rating]' 
+      value='4'>
+    <label 
+      for="good" 
+      id='good-label' 
+      data-rating="4">
+    </label>
+    
+    <input 
+      id="super" 
+      type="radio" 
+      name='report[material_rating]' 
+      value='5'>
+    <label 
+      for="super" 
+      id='good-label' 
+      data-rating="5">
+    </label>
+  </div>
+
+  <div id="best-concept" class="form-group">
+    <label class="text-label">
+      <h3>
+        What concept or skill did you get the best?
+      </h3>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Eureka!">
+    </label>
+  </div>
+
+  <div id="worst-concept" class="form-group">
+    <label class="text-label">
+      <h3>
+        What concept or skill was the toughest?
+      </h3>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Stack level too deep!">
+    </label>
+  </div>
+  
+  <div class="form-group">
+    <label class="text-label">
+      <h3>
+        Name of your pair:
+      </h3>
+      <input
+        type="text"
+        class="form-control">
+    </label>
+  </div>
+  
+  <div class="form-group radios stars">
+    <h3>Rating for your pair experience today:</h3>
+    <input id="one-star" type="radio" name='report[pair_rating]' value='1'>
+    <label for="one-star" id="one-star-label" data-stars="1"></label>
+    
+    <input id="two-stars" type="radio" name='report[pair_rating]' value='2'>
+    <label for="two-stars" id="two-stars-label" data-stars="2"></label>
+    
+    <input id="three-stars" type="radio" name='report[pair_rating]' value='3'>
+    <label for="three-stars" id='three-stars-label' data-stars="3" ></label>
+    
+    <input id="four-stars" type="radio" name='report[pair_rating]' value='4'>
+    <label for="four-stars" id='four-stars-label' data-stars="4"></label>
+    
+    <input id="five-stars" type="radio" name='report[pair_rating]' value='5'>
+    <label for="five-stars" id='five-stars-label' data-stars="5"></label>
+  </div>
+  
+  <div id='pair-comments' class="form-group">
+    <label class="text-label"><h3>Care to elaborate?</h3></label>
+      <textarea
+        class="form-control" 
+        placeholder="What gives?"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label class="text-label">
+      <h3>Any comments on today's material, your understanding, feedback on what we could do better, or anything else?
+      </h3>
+    </label>
+      <textarea
+        class="form-control" 
+        placeholder="I'm a blank slate!"></textarea>
+  </div>
+  
+<button class='btn btn-lg btn-primary'>Save</button>
+</form>
+
+<%= link_to "All reports for #{@student}", student_url(@student) %>
+
+<script type="text/javascript">
+  $(function() {
+    $('.stars').on('click', 'label', function(event) {
+      var $target = $(event.currentTarget)
+      var rating = $target.data('stars')
+      $target.attr('class', 'starred')
+    
+      $target.siblings('label').each(function (index, star) {
+        var $star = $(star)
+        if($star.data('stars') <= rating) {
+          $star.addClass('starred')
+        } else {
+          $star.removeClass('starred')
+        }
+      });
+    
+      if(rating < 4) {
+        $('#pair-comments').slideDown();
+      } else {
+        $('#pair-comments').slideUp();
+      }
+    });
+  
+    $('.faces').on('click', 'label', function(event) {
+      var $target = $(event.currentTarget)
+      var rating = $target.data('rating')
+    
+      if(rating > 3) {
+        $('#best-concept').slideDown();
+        $('#worst-concept').slideUp();
+      } else {
+        $('#worst-concept').slideDown();
+        $('#best-concept').slideUp();
+      }
+    });
+  });
+</script>
