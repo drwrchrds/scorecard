@@ -18,6 +18,7 @@
 #  updated_at         :datetime
 #  ta_id              :integer
 #  blog_link          :string(255)
+#  pair_id            :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

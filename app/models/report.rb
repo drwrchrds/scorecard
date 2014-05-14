@@ -18,6 +18,7 @@
 #  updated_at         :datetime
 #  ta_id              :integer
 #  blog_link          :string(255)
+#  pair_id            :integer
 #
 
 class Report < ActiveRecord::Base
@@ -25,6 +26,9 @@ class Report < ActiveRecord::Base
 
   belongs_to :student, inverse_of: :reports
   belongs_to :ta
+  belongs_to :pair,
+    class_name: "Student",
+    foreign_key: :pair_id
   
   def self.generate_new_reports(student)
     (1..9).step do |week|
@@ -41,7 +45,7 @@ class Report < ActiveRecord::Base
   
   def submitted?
     !finished_exercises.nil? && !read_solutions.nil? && 
-      !read.readings.nil? && material_rating &&
+      !read_readings.nil? && material_rating &&
       pair_rating && (good_concept || bad_concept)
   end
 end

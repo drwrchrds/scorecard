@@ -4,18 +4,38 @@
 <%= @student %>
 
 <h3>Finished today's exercises?</h3>
+<%= @report.finished_exercises %>
+
 <h3>Read the solutions?</h3>
+<%= @report.read_solutions %>
+
 <h3>Read tomorrow's readings?</h3>
+<%= @report.read_readings %>
+
 <h3>Rating for your understanding of today's material:</h3>
-(faces of frustration 1-5)
-<h3>What concept or skill did you get the best?</h3>
-<h3>What concept or skill was the toughest?</h3>
+<%= @report.material_rating %>
+
+<% if @report.good_concept %>
+  <h3>What concept or skill did you get the best?</h3>
+  <%= @report.good_concept %>
+<% end %>
+
+<% if @report.bad_concept %>
+  <h3>What concept or skill was the toughest?</h3>
+  <%= @report.bad_concept %>
+<% end %>
+
 <h3>Name of pair:</h3>
+<%= @report.pair %>
+
 <h3>Rating for your pair experience today:</h3>
-1-5 stars
+<%= @report.pair_rating %>
 
 <h3>Please explain your rating:</h3>
+<%= @report.pair_comments %>
+
 <h3>Comments on today's material, your understanding, feedback on what we
 could do better, or anything else:</h3>
+<%= @report.comments %>
 
 <%= link_to "All reports for #{@student}", student_url(@student) %>

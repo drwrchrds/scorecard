@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510224801) do
+ActiveRecord::Schema.define(version: 20140513225821) do
 
   create_table "cohorts", force: true do |t|
     t.string   "start"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140510224801) do
     t.datetime "updated_at"
     t.integer  "ta_id"
     t.string   "blog_link"
+    t.integer  "pair_id"
   end
 
   add_index "reports", ["student_id"], name: "index_reports_on_student_id"

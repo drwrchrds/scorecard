@@ -17,6 +17,7 @@ class Student < ActiveRecord::Base
   
   has_many :reports
   belongs_to :cohort
+  belongs_to :report
   
   def to_s
     "#{first_name} #{last_name}"
